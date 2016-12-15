@@ -4,6 +4,7 @@ project(qt_example)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   roslib
+  examplelib
 )
 
 find_package(Qt5Widgets REQUIRED)
@@ -12,6 +13,7 @@ find_package(Boost REQUIRED COMPONENTS thread)
 include_directories(include
   src/
   ${Boost_INCLUDE_DIRS}
+  ${examplelib_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${roscpp_INCLUDE_DIRS}
 )
@@ -41,6 +43,6 @@ qt5_wrap_cpp(qt_example_MOCS ${qt_example_HDRS})
 
 
 add_executable(qt_example ${qt_example_SRCS} ${qt_example_MOCS})
-target_link_libraries(qt_example Qt5::Widgets ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(qt_example Qt5::Widgets ${catkin_LIBRARIES} ${Boost_LIBRARIES} ${examplelib_LIBRARIES})
 
 
